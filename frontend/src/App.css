@@ -1,0 +1,78 @@
+body {
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  height: 100%;
+}
+.main-header {
+    margin: 0;
+    margin-top: 2rem;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.nav-main {
+  height: 3rem;
+}
+.games {
+  background-color: rgb(145, 145, 255);
+  display: flex;
+  justify-content: center;
+  height: 30%;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  margin-top: 1.5rem;
+}
+.games-container {
+  display: flex;
+  justify-content: center;
+  width: 65%;
+}
+.game {
+  display: flex;
+  justify-content: center;
+  height: 10rem;
+  width: 18rem;
+  background-color: rgb(250, 230, 230);
+  border-radius: 9px;
+  margin: 2rem;
+}
+.game:hover {
+  border: 1px solid rgb(140, 140, 255);
+}
+.game-upper {
+  display: flex;
+  justify-content: space-between;
+  height: 3rem;
+  width: 100%;
+  padding: 0.3rem;
+  margin: 0;
+}
+.league {
+
+}
+.minute {
+  width: 1.8rem;
+  height: 1.1rem;
+  border-radius: 0.4rem;
+  background-color: #ffBBBB;
+}
+.sm-button {
+  background-color: rgb(85, 85, 200);
+  color: rgb(255, 255, 255);
+  width: 8rem;
+  height: 3rem;
+  border: None;
+  border-radius: 8px;
+}
+.sm-button:hover {
+  background-color: rgb(100, 100, 215);
+}
+.sm-button-container {
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+}
