@@ -21,7 +21,7 @@ function MatchList()  {
     }, []);
 
     return (
-        <section className="match-data">
+        <section className="">
             {matches.map(match => 
                     <li key={match.id}>
                         {match.team1_score} - {match.team2_score}
