@@ -4,10 +4,10 @@ import Games from './components/Games'
 import SeeMoreButton from './components/SeeMoreButton'
 import MatchList from './components/matchList'
 import ListGroup from './components/ListGroup'
-import Navbar from './components/Navbar'
+import Navbar from './components/navBar'
 
 function App() {
-  let items = ["SanFrancisco", "New York", "Paris", "Seattle"]
+  let items = ["SanFrancisco", "New York", "Seattle"]
   return (<>
             <Navbar></Navbar>
             <Header></Header>
