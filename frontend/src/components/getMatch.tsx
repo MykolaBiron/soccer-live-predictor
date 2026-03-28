@@ -15,6 +15,8 @@ interface GetMatchProps {
 }
 function GetMatch({matchId}:GetMatchProps) {
     const[match, setMatch] = useState<Match|null>(null);
+    const [now, setNow] = useState<number>(Date.now());
+
     useEffect(() => {
     fetch(`http://localhost:8080/api/matches/${matchId}`)
         .then(response => {
@@ -32,14 +34,32 @@ function GetMatch({matchId}:GetMatchProps) {
         });
 }, [matchId]);
 
+    useEffect(() => {
+        const intervalId = setInterval(() => setNow(Date.now()), 60000);
+        return () => clearInterval(intervalId);
+    }, []);
+
     if (!match) {
         return <div>Loading match...</div>;
     }
 
+    const parsedStartMs = Date.parse(match.start_time);
+    const fallbackStartMs = Date.parse(`${match.date}T${match.start_time}`);
+    const startMs = Number.isNaN(parsedStartMs) ? fallbackStartMs : parsedStartMs;
+    let elapsedMinutes = Number.isNaN(startMs)
+        ? 0
+        : Math.max(0, Math.floor((now - startMs) / 60000));
+    elapsedMinutes = Math.min(elapsedMinutes, 110)
+
     return (
-        <div>
-            {match.team1} {match.team1_score} - {match.team2_score} {match.team2}
-        </div>
+        <>
+            <div className={elapsedMinutes < 110 ? "minute": "minute m-finished"}>
+                {elapsedMinutes}'
+            </div>
+            <div>
+                {match.team1} {match.team1_score} - {match.team2_score} {match.team2}
+            </div>
+        </>
     );
 }
 export default GetMatch;

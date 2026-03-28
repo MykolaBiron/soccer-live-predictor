@@ -14,7 +14,7 @@ function ListGroup({items, heading, onSelectItem}: Props) {
                 <h1>List</h1>
                 {items.length === 0 ? <p>No items found</p> : null}
                 <ul>
-                    {items.map((item, index) => <li key={index} onClick={onSelectItem(item)}>{item}</li>)}
+                    {items.map((item, index) => <li key={index}></li>)}
                 </ul>
             </>
 }

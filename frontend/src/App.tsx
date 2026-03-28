@@ -1,10 +1,10 @@
 import './App.css'
 import Header from './components/Header'
 import Games from './components/Games'
-import Navbar from './components/navBar'
 import SeeMoreButton from './components/SeeMoreButton'
 import MatchList from './components/matchList'
 import ListGroup from './components/ListGroup'
+import Navbar from './components/Navbar'
 
 function App() {
   let items = ["SanFrancisco", "New York", "Paris", "Seattle"]
