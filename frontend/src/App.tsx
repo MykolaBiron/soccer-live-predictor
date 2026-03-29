@@ -7,7 +7,7 @@ import ListGroup from './components/ListGroup'
 import Navbar from './components/navBar'
 
 function App() {
-  let items = ["SanFrancisco", "New York", "Seattle"]
+  let items = ["SanFrancisco", "New York", "Seattle", "Paris", "Los Angeles"]
   return (<>
             <Navbar></Navbar>
             <Header></Header>
