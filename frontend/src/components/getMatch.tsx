@@ -19,6 +19,7 @@ function GetMatch({matchId}:GetMatchProps) {
 
     useEffect(() => {
     if (!Number.isFinite(matchId)) {
+        console.log("Number is not finite");
         return;
     }
 

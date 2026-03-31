@@ -9,7 +9,7 @@ import RecentGames from './components/RecentGames'
 import { useEffect, useState } from 'react'
 
 
-interface Match {
+export interface Match {
     id: number,
     date: string,
     start_time: string,
@@ -40,18 +40,15 @@ function LivePage() {
               .catch((error: unknown) => console.error(error));
       }, []);
 
-  const recentMatchIds = [...matches]
+  const recentMatches = [...matches]
     .sort((a, b) => getMatchTimestamp(b) - getMatchTimestamp(a))
-    .map((match) => Number(match.id))
-    .filter((id) => Number.isFinite(id))
     .slice(0, 3);
 
 
   return (
     <>
       <Header></Header>
-      <Games matchIds={recentMatchIds}></Games>
-      <MatchList></MatchList>
+      <Games matches={recentMatches}></Games>
       <SeeMoreButton></SeeMoreButton>
     </>
   )
