@@ -1,21 +1,73 @@
 import './App.css'
+import { Navigate, Route, Routes } from 'react-router-dom'
 import Header from './components/Header'
 import Games from './components/Games'
 import SeeMoreButton from './components/SeeMoreButton'
 import MatchList from './components/matchList'
-import ListGroup from './components/ListGroup'
-import Navbar from './components/navBar'
+import Navbar from './components/Navbar'
+import RecentGames from './components/RecentGames'
+import { useEffect, useState } from 'react'
+
+
+interface Match {
+    id: number,
+    date: string,
+    start_time: string,
+    team1: string, 
+    team2: string,
+    team1_score: number,
+    team2_score: number;
+
+}
+
+function getMatchTimestamp(match: Match): number {
+  const parsedStartMs = Date.parse(match.start_time);
+  if (!Number.isNaN(parsedStartMs)) {
+    return parsedStartMs;
+  }
+
+  const fallbackStartMs = Date.parse(`${match.date}T${match.start_time}`);
+  return Number.isNaN(fallbackStartMs) ? 0 : fallbackStartMs;
+}
+
+function LivePage() {
+  const [matches, setMatches] = useState<Match[]>([]);
+  
+      useEffect(() => {
+          fetch("http://localhost:8080/api/matches")
+              .then((response) => response.json())
+              .then((data: Match[]) => setMatches(data))
+              .catch((error: unknown) => console.error(error));
+      }, []);
+
+  const recentMatchIds = [...matches]
+    .sort((a, b) => getMatchTimestamp(b) - getMatchTimestamp(a))
+    .map((match) => Number(match.id))
+    .filter((id) => Number.isFinite(id))
+    .slice(0, 3);
+
+
+  return (
+    <>
+      <Header></Header>
+      <Games matchIds={recentMatchIds}></Games>
+      <MatchList></MatchList>
+      <SeeMoreButton></SeeMoreButton>
+    </>
+  )
+}
 
 function App() {
-  let items = ["SanFrancisco", "New York", "Seattle", "Paris", "Los Angeles"]
-  return (<>
-            <Navbar></Navbar>
-            <Header></Header>
-            <Games></Games>
-            <MatchList></MatchList>
-            <SeeMoreButton></SeeMoreButton>
-            <ListGroup items={items} heading="cities" onSelectItem={(item) => console.log(item)}></ListGroup>
-          </>)
+  return (
+    <>
+      <Navbar></Navbar>
+      <Routes>
+        <Route path="/" element={<LivePage />}></Route>
+        <Route path="/recent-games" element={<RecentGames />}></Route>
+        <Route path="*" element={<Navigate to="/" replace />}></Route>
+      </Routes>
+    </>
+  )
 }
-export default App;
+export default App
 

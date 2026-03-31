@@ -9,12 +9,21 @@ interface Props {
 
 function ListGroup({items, heading, onSelectItem}: Props) {
     const [selectedIndex, setSelectedIndex] = useState(-1);
-    const [name, setName] = useState('');
     return <>
-                <h1>List</h1>
+                <h1>{heading}</h1>
                 {items.length === 0 ? <p>No items found</p> : null}
                 <ul>
-                    {items.map((item, index) => <li key={index}></li>)}
+                    {items.map((item, index) => (
+                        <li
+                            key={index}
+                            onClick={() => {
+                                setSelectedIndex(index);
+                                onSelectItem(item);
+                            }}
+                            style={{ fontWeight: selectedIndex === index ? 700 : 400, cursor: 'pointer' }}>
+                            {item}
+                        </li>
+                    ))}
                 </ul>
             </>
 }

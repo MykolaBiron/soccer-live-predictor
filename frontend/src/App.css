@@ -43,6 +43,16 @@ body {
 .menu-link:hover {
   color: rgb(65, 72, 175);
 }
+
+.menu-link.active {
+  color: rgb(65, 72, 175);
+  border-bottom: 2px solid rgb(65, 72, 175);
+}
+
+.menu-link-disabled {
+  opacity: 0.55;
+}
+
 .games {
   background-color: rgb(145, 145, 255);
   display: flex;
@@ -62,7 +72,7 @@ body {
   display: flex;
   justify-content: center;
   height: 10rem;
-  width: 25rem;
+  width: 30rem;
   background-color: rgb(250, 230, 230);
   border-radius: 9px;
   margin: 2rem;
@@ -112,5 +122,47 @@ body {
 .match-data {
   width: 100%;
   height: 5rem;
+}
+
+.recent-games {
+  max-width: 900px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+
+.recent-games-list {
+  list-style: none;
+  padding: 0;
+  margin: 1rem 0 0;
+  display: grid;
+  gap: 0.75rem;
+}
+
+.recent-games-item {
+  border: 1px solid rgb(206, 210, 250);
+  border-radius: 8px;
+  padding: 0.75rem 1rem;
+}
+
+.recent-games-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  font-weight: 600;
+}
+
+.recent-games-status {
+  font-size: 0.75rem;
+  background-color: rgb(230, 235, 255);
+  color: rgb(65, 72, 175);
+  border-radius: 999px;
+  padding: 0.2rem 0.5rem;
+}
+
+.recent-games-time {
+  margin-top: 0.35rem;
+  color: rgb(90, 95, 110);
+  font-size: 0.9rem;
 }
 

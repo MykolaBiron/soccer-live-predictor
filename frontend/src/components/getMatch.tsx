@@ -18,6 +18,10 @@ function GetMatch({matchId}:GetMatchProps) {
     const [now, setNow] = useState<number>(Date.now());
 
     useEffect(() => {
+    if (!Number.isFinite(matchId)) {
+        return;
+    }
+
     fetch(`http://localhost:8080/api/matches/${matchId}`)
         .then(response => {
             if (!response.ok) {
@@ -50,14 +54,21 @@ function GetMatch({matchId}:GetMatchProps) {
         ? 0
         : Math.max(0, Math.floor((now - startMs) / 60000));
     elapsedMinutes = Math.min(elapsedMinutes, 110)
+    let minuteMessage = `${elapsedMinutes}`;
+    if (elapsedMinutes == 110) {
+        minuteMessage = "finished";
+    }
 
     return (
         <>
             <div className={elapsedMinutes < 110 ? "minute": "minute m-finished"}>
-                {elapsedMinutes}'
+                {minuteMessage}'
             </div>
             <div>
-                {match.team1} {match.team1_score} - {match.team2_score} {match.team2}
+                {match.team1.replace(" FC", "")} {match.team1_score} - {match.team2_score} {match.team2.replace(" FC", "")}
+            </div>
+            <div>
+                {match.date}
             </div>
         </>
     );

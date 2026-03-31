@@ -24,7 +24,7 @@ function MatchList()  {
         <section className="">
             {matches.map(match => 
                     <li key={match.id}>
-                        {match.team1_score} - {match.team2_score}
+                        {match.team1} {match.team1_score} - {match.team2_score} {match.team2}
                     </li>)}
         </section>
     )

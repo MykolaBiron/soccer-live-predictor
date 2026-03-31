@@ -1,12 +1,19 @@
 import Game from "./Game.tsx"
 
-function Games() {
+interface GamesProps {
+    matchIds: number[];
+}
+function Games({matchIds}: GamesProps) {
+    const visibleMatchIds = matchIds
+        .filter((id): id is number => Number.isFinite(id))
+        .slice(0, 3);
+
     return (
         <section className="games">
             <div className="games-container">
-                <Game matchId={1}></Game>
-                <Game matchId={2}></Game>
-                <Game matchId={3}></Game>
+                {visibleMatchIds.map((matchId) => (
+                    <Game key={matchId} matchId={matchId}></Game>
+                ))}
             </div> 
         </section>
     )
