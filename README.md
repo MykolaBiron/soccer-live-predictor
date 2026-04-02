@@ -84,11 +84,5 @@ npm install
 npm run dev
 ```
 
-## What Recruiters and Teams Can Expect
-
-- Practical full-stack delivery skills
-- Strong API and data modeling fundamentals
-- Clean separation between UI, business logic, and persistence
-- Production-minded choices: scheduling, integration boundaries, and typed contracts
 
 .
