@@ -1,75 +1,94 @@
-# React + TypeScript + Vite
+# Live Predictor
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+![Spring Boot](https://img.shields.io/badge/Spring_Boot-6DB33F?style=for-the-badge&logo=spring-boot&logoColor=white)
+![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
+![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-4169E1?style=for-the-badge&logo=postgresql&logoColor=white)
 
-Currently, two official plugins are available:
+Full-stack football match prediction and tracking platform built with a Java/Spring backend and a React/TypeScript frontend.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## How I built it
 
-## React Compiler
+- Built a complete full-stack product with clear separation of concerns between frontend and backend.
+- Integrated live external sports data and normalized it into a reliable domain model.
+- Implemented automated synchronization workflows to keep match data fresh without manual intervention.
+- Used TypeScript and DTO-based API design to improve reliability and reduce runtime data issues.
+- Structured for maintainability with component-based UI and service/repository layers in the backend.
 
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
+## Product Overview
 
-Note: This will impact Vite dev & build performances.
+Live Predictor allows users to:
 
-## Expanding the ESLint configuration
+- Browse recent and upcoming matches
+- View match details in responsive UI
+- Consume continuously updated match data from the backend API
+- Work with a system designed to scale from local development to production deployment
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Architecture
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+### Frontend
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+- React + TypeScript
+- Component-driven UI architecture
+- Hooks-based data fetching and state management
+- Responsive layout for desktop and mobile
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+### Backend
+
+- Spring Boot (Java 21)
+- REST API for frontend communication
+- Spring Data JPA + Hibernate for persistence
+- Scheduled jobs for automatic data updates
+- Jackson + Java records/DTOs for type-safe payload mapping
+
+### Data Layer
+
+- PostgreSQL relational database
+- Indexed lookups and structured match storage
+
+## Tech Stack
+
+- Frontend: React, TypeScript, Vite, CSS
+- Backend: Java 21, Spring Boot, Spring Data JPA, Hibernate
+- Database: PostgreSQL
+- Tooling: Gradle, npm
+
+## Repository Structure
+
+```text
+live-predictor/
+|- backend/   # Spring Boot API + data synchronization
+|- frontend/  # React TypeScript client
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Local Setup
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+### Prerequisites
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+- Java 21
+- Node.js 18+
+- PostgreSQL
+
+### 1) Start the backend
+
+```powershell
+cd backend
+.\gradlew bootRun
 ```
+
+### 2) Start the frontend
+
+```powershell
+cd frontend
+npm install
+npm run dev
+```
+
+## What Recruiters and Teams Can Expect
+
+- Practical full-stack delivery skills
+- Strong API and data modeling fundamentals
+- Clean separation between UI, business logic, and persistence
+- Production-minded choices: scheduling, integration boundaries, and typed contracts
+
+.
