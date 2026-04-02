@@ -3,7 +3,6 @@ import { Navigate, Route, Routes } from 'react-router-dom'
 import Header from './components/Header'
 import Games from './components/Games'
 import SeeMoreButton from './components/SeeMoreButton'
-import MatchList from './components/matchList'
 import Navbar from './components/Navbar'
 import RecentGames from './components/RecentGames'
 import { useEffect, useState } from 'react'
@@ -60,7 +59,26 @@ function App() {
       <Navbar></Navbar>
       <Routes>
         <Route path="/" element={<LivePage />}></Route>
-        <Route path="/recent-games" element={<RecentGames />}></Route>
+        <Route
+          path="/recent-games"
+          element={
+            <RecentGames
+              title="Recent Games"
+              apiUrl="http://localhost:8080/api/matches/recent"
+              gameType="recent"
+            />
+          }
+        ></Route>
+        <Route
+          path="/upcoming-games"
+          element={
+            <RecentGames
+              title="Upcoming Games"
+              apiUrl="http://localhost:8080/api/matches/upcoming"
+              gameType="upcoming"
+            />
+          }
+        ></Route>
         <Route path="*" element={<Navigate to="/" replace />}></Route>
       </Routes>
     </>

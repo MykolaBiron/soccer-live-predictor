@@ -19,7 +19,13 @@ function Navbar() {
                         Live
                     </NavLink>
                 </li>
-                <li><span className="menu-link menu-link-disabled">Upcoming Games</span></li>
+                <li>
+                    <NavLink
+                        to="/upcoming-games"
+                        className={({ isActive }) => (isActive ? 'menu-link active' : 'menu-link')}>
+                        Upcoming Games
+                    </NavLink>
+                </li>
             </ul>
         </nav>
     )
